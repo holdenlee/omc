@@ -1,0 +1,274 @@
+\input{header}
+\pagestyle{fancy}
+
+%OMC <year>
+\lhead{\textit{OMC 2011}}
+
+% LECTURE TITLE
+\chead{Rearrangement Inequality}
+
+%%%%%%%%%%
+% LECTURE NUMBER
+%%%%%%%%%%
+\rhead{\textit{Lecture 23}}
+
+
+%%%%%%%%%%
+% CONTENT
+%
+% Here is where you place the problems and any other content. If you are making a problem set, use the \item command to create a new problem. 
+%
+%%%%%%%%%%
+\begin{document}
+\title{Lecture $23$ --- Rearrangement Inequality}% !! Remember to change the lecture number
+\author{Holden Lee}
+\date{6/4/11}% !! Remember to change the date
+\maketitle
+\thispagestyle{empty}
+\section{The Inequalities}
+We start with an example. 
+Suppose there are four boxes containing \$10, \$20, \$50 and \$100 bills, respectively. You may take 2 bills from one box, 3 bills from another, 4 bills from another, and 5 bills from the remaining box. What is the maximum amount of money you can get?
+
+Clearly, you'd want to take as many bills as possible from the box with largest-value bills! So you would take 5 \$100 bills, 4 \$50 bills, 3 \$20 bills, and 2 \$10 bills, for a grand total of
+\begin{equation}\label{rearr1}
+5\cdot \$100+4\cdot \$50+3\cdot \$20+2\cdot \$10=\$780.
+\end{equation}
+
+Suppose instead that your arch-nemesis (who isn't very good at math) is picking the bills instead, and he asks you how many bills he should take from each box. In this case, to minimize the amount of money he gets, you'd want him to take as many bills as possible from the box with lowest-value bills. So you tell him to take 5 \$10 bills, 4 \$20 bills, 3 \$50 bills, and 2 \$100 bills, for a grand total of
+\begin{equation}\label{rearr2}
+5\cdot \$10+4\cdot \$20+3\cdot \$50+2\cdot \$100=\$480.
+\end{equation}
+
+The maximum is attained when the number of bills taken and the denominations are {\it similarly sorted} as in~(\ref{rearr1}) and the minimum is attained when they are {\it oppositely sorted} as in~(\ref{rearr2}). The Rearrangement Inequality formalizes this observation.
+\begin{thm}[Rearrangement]
+Let $x_1,x_2,\ldots,x_n$ and $y_1,y_2,\ldots,y_n$ be real numbers (not
+necessarily positive) with \[x_1\leq x_2\leq\cdots\leq x_n,\textrm{ and }y_1\leq
+y_1\leq\cdots\leq y_n,\] and let $\sigma$ be a permutation
+of $\{1,2,\ldots,n\}$. (That is, $\sigma$ sends each of $1,2,\ldots, n$ to a different value in $\{1,2,\ldots,n\}$.) Then the following inequality holds:
+\[x_1y_n+x_2y_{n-1}+\cdots+x_ny_1\leq x_1y_{\sigma 1}+x_2y_{\sigma
+2}+\cdots+x_ny_{\sigma n}\leq x_1y_1+x_2y_2+\cdots+x_ny_n.\]
+\end{thm}
+\begin{proof}
+We prove the inequality on the right by induction on $n$. The statement is obvious for $n=1$. Suppose it true for $n-1$. Let $m$ be an integer such that $\sigma m=n$. Since $x_n\geq x_m$ and $y_{n}\geq y_{\sigma n}$,
+\begin{align}
+0&\leq (x_n-x_m)(y_n-y_{\sigma n})\label{rearr3}
+\\
+\nonumber 
+\implies x_{m}y_n+x_ny_{\sigma n}&\leq x_my_{\sigma n}+x_ny_n.
+\end{align}
+Hence
+\begin{equation}\label{rearr35}
+x_1y_{\sigma 1}+\cdots +x_m\underbrace{y_{\sigma
+m}}_{y_n}+\cdots+x_ny_{\sigma n}\leq x_1y_{\sigma 1}+\cdots +x_my_{\sigma n}+\cdots+x_ny_n.
+\end{equation}
+By the induction hypothesis,
+\[
+x_1y_{\sigma 1}+\cdots +x_my_{\sigma
+n}+\cdots+x_{n-1}y_{\sigma (n-1)}\leq x_1y_{1}+\cdots +x_my_{m}+ \cdots +x_{n-1}y_{n-1}.
+\]
+Thus the RHS of~(\ref{rearr35}) is at most $x_1y_1+\cdots +x_{n-1}y_{n-1}+x_ny_n$, as needed.
+
+To prove the LHS, apply the above with $-y_i$ instead of $y_i$ (noting that negating an inequality reverses the sign).
+\end{proof}
+\begin{rem}
+%Equality is attained in the inequality~(\ref{rearr3}) iff either $x_m=x_n$ or $
+Equality is attained on the RHS if and only if, for every $r$, the following are equal as multisets:
+\[
+\{y_m\mid x_m=r\}=\{y_{\sigma m}\mid x_m=r\}.
+\]
+To see this, note that otherwise, using the procedure above, at some time we will have to switch two unequal numbers $y_k',y_m'$ with unequal corresponding $x$'s, $x_k\ne x_m$, and we get inequality (see~(\ref{rearr3})). Similarly, equality is attained on the LHS if and only if for every $r$,
+\[
+\{y_{n+1-m}\mid x_m=r\}=\{y_{\sigma m}\mid x_m=r\}.
+\]
+
+In particular, if the $a_1,\ldots, a_n$ are all distinct and $b_1,\ldots, b_n$ are all distinct, then equality on the right-hand side occurs only when $\si(m)=m$ for all $m$, and equality on the left-hand side occurs only when $\si(m)=n+1-m$ for all $m$.
+\end{rem}
+
+The rearrangement inequality can be used to prove the following.
+\begin{thm}[Chebyshev]
+Let $a_1\leq a_2\leq \cdots \leq a_n$ and $b_1\leq b_2\leq \cdots \leq b_n$ be two similarly sorted sequences. Then
+\[
+\frac{a_1b_n+a_2b_{n-1}+\cdots +a_nb_1}{n}\leq \frac{a_1+a_2+\cdots +a_n}{n}\cdot \frac{b_1+b_2+\cdots+b_n}{n}\leq\frac{a_1b_1+\cdots+a_nb_n}{n} 
+\]
+\end{thm}
+\begin{proof}
+Add up the following inequalities (which hold by the Rearrangement Inequality):
+\begin{align*}
+a_1b_1+a_2b_2+\cdots+a_nb_n&\leq a_1b_1+a_2b_2+\cdots+a_nb_n\\
+a_1b_2+a_2b_3+\cdots +a_nb_1&\leq a_1b_1+a_2b_2+\cdots+a_nb_n\\
+\vdots\\
+a_1b_n+a_2b_1+\cdots +a_nb_{n-1}&\leq a_1b_1+a_2b_2+\cdots+a_nb_n
+\end{align*}
+After factoring the left-hand side and dividing by $n^2$, we get the right-hand inequality. 
+
+By replacing $b_i$ with $-b_i$ and using the above result we get the left-hand inequality.
+\end{proof}
+\section{Problems}
+\begin{enumerate}
+\item Given that $a,b,c\ge 0$, prove $a^3+b^3+c^3\ge a^2 b+b^2 c+c^2 a$.
+\item Powers: For $a,b,c>0$ prove that
+\begin{enumerate}
+\item $a^ab^bc^c\geq a^bb^cc^a$.
+\item $a^ab^bc^c\geq (abc)^{\frac {a+b+c}3}$.
+\end{enumerate}
+\item Suppose $a_1,a_2,\ldots, a_n>0$ and let $s=a_1+\cdots +a_n$. Prove that
+\[
+\frac{a_1}{s-a_1}+\cdots +\frac{a_n}{s-a_n}\ge \frac{n}{n-1}.
+\]
+In particular, conclude Nesbitt's Inequality
+\[
+\frac{a}{b+c}+\frac{b}{a+c}+\frac{c}{a+b}\ge \frac 32
+\]
+for $a,b,c>0$.
+\item Prove the following for $x,y,z>0$:
+\begin{enumerate}
+\item $\frac{x^2}{y}+\frac{y^2}{x}\ge x+y$.
+\item $\frac{x^2}{y^2}+\frac{y^2}{z^2}+\frac{z^2}{x^2}\geq \frac xz+\frac yx+\frac zy$.
+\item $\frac{xy}{z^2}+\frac{yz}{x^2}+\frac{zx}{y^2}\geq \frac xy+\frac yz+\frac zx$.
+\end{enumerate}
+\item (IMO 1978/2) Let $a_1,\ldots, a_n$ be pairwise distinct positive integers. Show that
+\[\frac{a_1}{1^2}+\frac{a_2}{2^2}+\cdots +\frac{a_n}{n^2}
+\geq \frac{1}{1}+\frac{1}{2}+\cdots + \frac{1}{n}.\]
+\item (modified ISL 2006/A4) Prove that for all positive $a,b,c$,
+\[\frac{ab}{a+b}+\frac{bc}{b+c}+\frac{ac}{a+c}\leq \frac{3(ab+bc+ca)}{2(a+b+c)}.\]
+\item Prove that for any positive real numbers $a,b,c$ the following inequality holds:
+\[\frac{a^2+bc}{b+c}+\frac{b^2+ac}{c+a}+\frac{c^2+ab}{a+b}\geq a+b+c.\]
+\item (MOSP 2007) Let $k$ be a positive integer, and let $x_1,x_2,\ldots, x_n$ be positive real numbers. Prove that
+\[\left(\sum_{i=1}^n \frac1{1+x_i}\right)\left(\sum_{i=1}^n x_i\right)
+\leq \left(\sum_{i=1}^n \frac{x_i^{k+1}}{1+x_i}\right)\left(\sum_{i=1}^n \frac1{x_i^k}\right).\]
+\item The numbers 1 to 100 are written on a $10\times 10$ board (1--10 in the first row, etc.). We are allowed to pick any number and two of its neighbors (horizontally, vertically, or diagonally---but our choice must be consistent), increase the number with 2 and decrease the neighbors by 1, or decrease the number by 2 and increase the neighbors by 1. At some later time the numbers in the table are again $1,2, \ldots ,100$. Prove that they are in the original order.
+\end{enumerate}
+
+\section{Solutions}
+\begin{enumerate}
+\item The sequences $a,b,c$ and $a^2, b^2, c^2$ are similarly sorted. Therefore, by the rearrangement inequality,
+\[
+a^2\cdot a+b^2\cdot b+c^2\cdot c\ge a^2\cdot b+b^2 \cdot c+c^2\cdot a.
+\]
+\item
+Since $\ln$ is an increasing function, we take the $\ln$ of both sides to find that the inequalities are equivalent to
+\begin{align*}
+a\ln a+b\ln b+c\ln c&\ge b\ln a +c\ln b+ a\ln c\\
+a\ln a+b\ln b+c\ln c&\ge \frac{a+b+c}{3}(\ln a+\ln b+\ln c).
+\end{align*}
+Note the sequences $(a,b,c)$ and $(\ln a, \ln b, \ln c)$ are similarly sorted, since $\ln$ is an increasing function. Then the first inequality follows from Rearrangement and the second from Chebyshev.
+\item Since both sides are symmetric, we may assume without loss of generality that $a_1\le \cdots \le a_n$. Then $s-a_1\ge \cdots \ge s-a_n$ and $\rc{s-a_1}\le \cdots \le \rc{s-a_n}$. By Chebyshev's inequality with $(a_1,\ldots, a_n)$ and $\pa{\rc{s-a_1}, \ldots , \rc{s-a_n}}$, we get
+\begin{align*}
+\frac{a_1}{s-a_1}+\cdots +\frac{a_n}{s-a_n}&\ge \rc{n}(a_1+\cdots +a_n)\pa{\rc{s-a_1}+\cdots +\rc{s-a_n}}\\
+&= \rc{n}\pa{\frac{s}{s-a_1}+\cdots +\frac{s}{s-a_n}}\\
+&= \rc{n}\pa{\frac{a_1}{s-a_1}+\cdots +\frac{s}{s-a_n}+n}.
+\end{align*}
+This gives
+\begin{align*}
+\frac{n-1}{n}\pa{\frac{a_1}{s-a_1}+\cdots +\frac{a_n}{s-a_n}}&\ge 1\implies\\
+\frac{a_1}{s-a_1}+\cdots +\frac{a_n}{s-a_n}&\ge\frac{n}{n-1}.
+\end{align*}
+\item
+\begin{enumerate}
+\item Without loss of generality, $x\ge y$. Then $x^2\ge y^2$ and $\rc y\ge \rc x$, i.e. $(x^2,y^2)$ and $(\rc y,\rc x)$ are similarly sorted. Thus
+\[
+x^2\cdot \rc y+y^2\cdot \rc x \ge x^2\cdot \rc x +y^2 \cdot \rc y.
+\]
+\item Letting $a=\frac{x}{y}, b=\frac{y}{z}, c=\frac{z}{x}$, the inequality is equivalent to
+\[
+a^2+b^2+c^2\ge ab+bc+ca.
+\]
+This is true by the rearrangement inequality applied to the similarly sorted sequences $(a,b,c)$ and $(a,b,c)$.
+\item
+Let $a=\frac{x^{\frac 13}y^{\frac 13}}{z^{\frac 23}}$, $b=\frac{x^{\frac 13}z^{\frac 13}}{y^{\frac 23}}$, and $c=\frac{y^{\frac 13}z^{\frac 13}}{x^{\frac 23}}$. Then the inequality to prove becomes
+\[
+a^3+b^3+c^3\ge a^2b+b^2c+c^2a
+\]
+which was proved in problem 1.
+\end{enumerate}
+\item
+Let $b_1,\ldots, b_n$ be the numbers $a_1,\ldots, a_n$ in increasing order. Since $b_1\le \cdots \le b_n$ and $\rc{1^2}\ge \cdots \ge \rc{n^2}$, by the rearrangement inequality,
+\[
+\frac{a_1}{1^2}+\frac{a_2}{2^2}+\cdots +\frac{a_n}{n^2}\ge \frac{b_1}{1^2}+\frac{b_2}{2^2}+\cdots +\frac{b_n}{n^2}.
+\]
+However, since the positive integers $b_m$ are distinct and in increasing order, we must have $b_m\ge m$. This gives the RHS is at least $\frac 11+\frac 12+\cdots \frac 1n$.
+\item
+Since the inequality is symmetric we may assume $a\le b\le c$. Then \begin{equation}\label{rearr4}
+a+b\le a+c\le b+c.\end{equation}
+We claim that
+\begin{equation}\label{rearr5}
+\frac{ab}{a+b}\le \frac{ac}{a+c}\le \frac{bc}{b+c}.
+\end{equation}
+Indeed, the two inequalities are equivalent to
+\begin{align*}
+a^2b+abc&\le a^2c+abc\\
+abc+ac^2&\le abc+bc^2
+\end{align*}
+both of which hold.
+
+Thus by Chebyshev applied to~(\ref{rearr4}) and~(\ref{rearr5}), we get
+\begin{equation}\label{rearr6}
+\pa{\frac{ab}{a+b}+ \frac{ac}{a+c}+ \frac{bc}{b+c}}((a+b)+(a+c)+(b+c))\le 3(ab+bc+ca).
+\end{equation}
+Dividing by $2(a+b+c)$ gives the desired inequality.
+
+(Note: The original problem asked to prove
+\[
+\sum_{i<j} \frac{a_ia_j}{a_i+a_j}\le \frac{n}{2(a_1+\cdots +a_n)}\sum_{i<j} a_ia_j
+\]
+when $a_1,\ldots, a_n$. This can be proved by summing~(\ref{rearr6}) over all 3-element subsets $\{a,b,c\}$ of (the multiset) $\{a_1,\ldots, a_n\}$, then dividing. This is a rare instance of a general inequality following directly from the 3-variable case!)
+\item
+Since the inequality is symmetric, we may assume without loss of generality that $a\le b\le c$. Then
+\begin{gather*}
+a^2\le b^2\le c^2\\
+\rc{b+c}\le \rc{a+c}\le \rc{a+b}.
+\end{gather*}
+Hence by the rearrangement inequality,
+\[
+\frac{a^2}{b+c}+\frac{b^2}{c+a}+\frac{c^2}{a+b}\ge \frac{b^2}{b+c}+\frac{c^2}{c+a}+\frac{a^2}{a+b}.
+\]
+Adding $\frac{bc}{b+c}+\frac{ac}{c+a}+\frac{ab}{a+b}$ to both sides gives
+\begin{align*}
+\frac{a^2+bc}{b+c}+\frac{b^2+ac}{c+a}+\frac{c^2+ab}{a+b}
+&\geq \frac{b^2+bc}{b+c}+\frac{c^2+ac}{c+a}+\frac{a^2+ab}{a+b}\\
+&=\frac{b(b+c)}{b+c}+\frac{c(c+a)}{c+a}+\frac{a(a+b)}{a+b}\\
+&=a+b+c.
+\end{align*}
+\item
+We apply Chebyshev's inequality twice:
+\begin{align*}
+\pa{\sum_{i=1}^n \rc{1+x_i}}\pa{\sum_{i=1}^n x_i} 
+&\le \ba{\rc n\pa{\sum_{i=1}^n\rc{x_i^k}}\pa{\sum_{i=1}^n \frac{x_i^k}{1+x_i}}}\pa{\sum_{i=1}^n x_i} \\
+&= \pa{\sum_{i=1}^n\rc{x_i^k}}\ba{\rc n\pa{\sum_{i=1}^n \frac{x_i^k}{1+x_i}}\pa{\sum_{i=1}^n x_i}} \\
+&\le \left(\sum_{i=1}^n \frac1{x_i^k}\right)\left(\sum_{i=1}^n \frac{x_i^{k+1}}{1+x_i}\right).
+\end{align*}
+Indeed, without loss of generality $x_1\le \cdots \le x_n$. 
+In the first application of Chebyshev we use that the following are oppositely sorted:
+\begin{align*}
+\rc{x_1^k}&\ge\cdots \ge \rc{x_n^k}\\
+\frac{x_1^k}{1+x_1}&\le\cdots \le \frac{x_n^k}{1+x_n}.
+\end{align*}
+The second inequality comes from the fact that $f(x)=\frac{x^k}{1+x}$ is an increasing function for $k\ge 1$, $x\ge 0$: if $x\le y$ then $x^k\le y^k$ and $x^{k-1}\le y^{k-1}$ together give
+\begin{align*}
+x^k+x^ky&\le y^k+xy^k\\
+\frac{x^k}{1+x}&\le \frac{y^k}{1+y}.
+\end{align*}
+(A simple derivative calculation also does the trick.)
+
+In the second application of Chebyshev we use that the following are similarly sorted:
+\begin{align*}
+\frac{x_1^k}{1+x_1}&\le\cdots \le \frac{x_n^k}{1+x_n}\\
+x_1&\le \cdots \le x_n.
+\end{align*}
+\item
+Look for an invariant! Let $a_{ij}=10(i-1)+j$, the original number in the $(i,j)$ position in the array. Let $b_{ij}$ be the numbers after some transformations. Then
+\[P=\sum_{1\leq i,j \leq 10} a_{ij}b_{ij}\]
+is invariant. 
+(Indeed, two opposite neighbors of $a_{ij}$ are $a_{ij}\pm d$ 
+for some $d$; 
+the sum changes by $\pm(2a_{ij}-(a_{ij}-d)-(a_{ij}+d))=0$ 
+at each step.)
+
+Initially, $P=\sum_{1\leq i,j \leq 10} a_{ij}^2$. Suppose that $b_{ij}$ are a permutation of the $a_{ij}$'s. Then
+\[\sum_{1\leq i,j \leq 10} a_{ij}^2=\sum_{1\leq i,j \leq 10} a_{ij}b_{ij}.\]
+By the equality case of the rearrangement inequality, since the $a_{ij}$ are all distinct and the $b_{ij}$ are all distinct, the $a_{ij}$ and $b_{ij}$ must be sorted similarly, i.e. $a_{ij}=b_{ij}$ for all $i,j$.
+\end{enumerate}
+\begin{thebibliography}{9}
+\bibitem{PSS} A. Engel. {\it Problem-Solving Strategies}. Springer, 1998, New York.
+\end{thebibliography}
+\end{document}

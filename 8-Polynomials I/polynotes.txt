@@ -1,0 +1,22 @@
+See \url{http://www.artofproblemsolving.com/blog/13377} for this theorem worked out for $\Z$.
+
+Thus to prove that unique factorization holds in an integral domain, it suffices to show that we have division with remainder compatible with a norm function. If $K$ is a field ($\Q,\R,\C,\Z/p\Z$), then we know from algebra that we have division with remainder in $K[x]$. Taking the norm function to be the degree, we see that the norm of the remainder is less than the norm of the divisor, as needed. Thus $K[x]$ is a Euclidean domain and hence has unique factorization. We explicitly state B\'ezout's Theorem for polynomals:
+\begin{thm}[B\'{e}zout]
+Let $K$ be a field and $f,g\in K[x]$. There exist polynomials $u,v\in K[x]$ so that $uf+vg=\text{gcd}(f,g)$.
+\end{thm}
+
+The following is also useful:
+
+\begin{ex}
+POLY SQ Q
+\end{ex}
+
+Let $R$ be a ring and $\mfp_1,\ldots, \mfp_n$ prime ideals.\footnote{
+A prime ideal is an ideal $\mfp$ such that $ab\in \mfp$ imply $a\in\mfp$ or $b\in \mfp$. For example, if $p$ is prime, then $(p)$ is a prime ideal.
+}
+Then the map $R\to R/\mfp_1\
+
+
+
+Conversely, note any irreducible polynomial in $R[x]$ must be primitive, so it suffices to prove an irreducible polynomial in $R[x]$ remains irreducible in $K[x]$. Equivalently, we have to show a polynomial in $R[x]$ reducible in $K[x]$ remains reducible in $R[x]$.
+Suppose $f$ is a primitive polynomial, and 

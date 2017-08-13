@@ -1,0 +1,30 @@
+Beauty of Math
+
+**Subject areas
+infinity
+fractals
+alg.top
+
+**Problems and methods
+"Repeating decimals"
+number theory
+Estimating # primes
+graph theory
+box. combo stuff
+
+->interdisciplinary
+Generating functions (calculus/algebra->combo)
+geometry->number theory
+abstract algebra->number theory
+algebraic combo (+special app of poly)
+(analysis->number theory)
+
+**"unifying theorems"
+Unique factorization
+
+
+1. cool problems, puzzles; self-contained self-sufficient subject gives tools to tackle problems
+1.5. elegance of solutions
+1.75 showing existence without finding an example
+2. connections between different areas of math
+3. grand unifying theories!

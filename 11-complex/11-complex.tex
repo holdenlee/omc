@@ -1,0 +1,551 @@
+\input{header}
+\pagestyle{fancy}
+
+%OMC <year>
+\lhead{\textit{OMC 2011}}
+
+% LECTURE TITLE
+\chead{Complex Numbers}
+
+%%%%%%%%%%
+% LECTURE NUMBER
+%%%%%%%%%%
+\rhead{\textit{Lecture 11}}
+
+
+%%%%%%%%%%
+% CONTENT
+%
+% Here is where you place the problems and any other content. If you are making a problem set, use the \item command to create a new problem. 
+%
+%%%%%%%%%%
+\begin{document}
+\title{Lecture $11$ --- Complex Numbers}% !! Remember to change the lecture number
+\author{Holden Lee}
+\date{2/19/11}% !! Remember to change the date
+\maketitle
+\thispagestyle{empty}
+%The difficulty of problems is given on a 1 to 5 scale.%, roughly as follows:
+%\begin{enumerate}
+%\item Easy to medium AMC, easy AIME, or easy proofs
+%\item Hard AMC, medium to hard AIME, or easy proofs
+%\item %Hard AIME or 
+%Easy Olympiad (like USAMO/IMO 1,4)
+%\item Medium Olympiad (2,5)
+%\item Hard Olympiad (3,6)
+%\end{enumerate}
+\section{Introduction}
+\subsection{Definitions}
+The set of real numbers $\R$---from the familiar integers---$0,1,-1,2,2,\ldots$ to rational numbers $\frac 12,\frac23,\ldots$ to irrational numbers $\sqrt{2},\pi,e$ are familiar to us and have a clear place in the world around us. But math is not quite complete without the complex numbers.
+
+In the reals there is no solution to the polynomial equation
+\[
+x^2=-1,
+\]
+as the square of any real number is positive. However, we can ``create" a solution: let's adjoin a number to $\R$ whose square is $-1$. Call it $i$, and let the resulting number system be $\C$. Since we want addition and multiplication to work out, we have to include in $\C$ all numbers of the form $z=a+bi$, where $a$ and $b$ are real.
+
+\begin{df}
+The set of numbers in the form $a+bi$, where $a$ and $b$ are real, is called the \textbf{complex numbers} $\C$. We call $a$ the \textbf{real part} of $z$ and $b$ the \textbf{imaginary part}, denoted by $\Re(z)=\text{Re}(z)$ and $\Im(z)=\text{Im}(z)$, respectively.
+\end{df}
+
+A good way to imagine complex numbers is to think of them as points on a plane (the \textbf{complex plane}), by graphing $a+bi$ as the point $(a,b)$. The $x$-axis consists of the real numbers $a\in \R$, while the $y$-axis consists of the imaginary numbers $bi,b\in \R$. However, the complex numbers have much more structure than just ordered pairs of real numbers---for instance, we can multiply complex numbers as we show below.
+
+Let's see how basic operations work in $\C$. To add or subtract complex numbers, we simply add the real and imaginary components: $(1+2i)-(3-5i)=(1-3)i+(2-(-5))i=-2+7i$. We multiply complex numbers by the distributive law, and recall that $i^2=-1$: for example $(1+2i)(3-5i)=1\cdot 3+1\cdot -5i+2i\cdot 3+2i\cdot -5i=3+6i-10i^2=13+6i$. To define division, we need the following:
+\begin{df}
+The \textbf{conjugate} of a complex number $z=a+bi$, where $a,b$ are real, is $\bar z=a-bi$. 
+\end{df}
+Note that the product of a complex number and its conjugate is always real:
+\[
+(a+bi)(a-bi)=a^2-(bi)^2=a^2+b^2.
+\]
+%This allows us to find the multiplicative inverse of a complex number:
+%\[
+%(a+bi)\frac{a-bi}{a^2+b^2}=1,
+%\]
+%i.e.
+%\[
+%\rc{a+bi}=\frac{a-bi}{a^2+b^2}.
+%\]
+This allows us to divide complex numbers: to evaluate $\frac{a+bi}{c+di}$ we multiply both the numerator and the denominator by the complex conjugate of $c+di$, $c-di$. For example,
+\[
+\frac{1+2i}{3-5i}=\frac{(1+2i)(3+5i)}{(3-5i)(3+5i)}=\frac{3+11i+10i^2}{3^2+5^2}=-\frac{7}{34}+\frac{11}{34}i.
+\]
+Note that complex conjugation preserves addition and multiplication, i.e. $\bar z_1+\bar z_2=\overline{z_1+z_2}$ and $\bar z_1\bar z_2=\bar{z_1}\bar{z_2}$. Indeed, let $z_1=a+bi$ and $z_2=c+di$. Then
+\begin{align*}
+\bar z_1+\bar z_2%&=\overline{a+bi}+\overline{c+di}
+&=(a-bi)+(c-di)=(a+c)-(b+d)i=\overline{z_1+z_2}.\\
+\bar z_1\bar z_2%&=\overline{a+bi}\cdot \overline{c+di}\\
+&=(a-bi)(c-di)\\
+&=(ac-bd)-(ad+bc)i\\
+&=\overline{(ac-bd)+(ad+bc)i}\\
+&=\overline{z_1z_2}.
+\end{align*}
+
+The \textbf{absolute value} of $z=a+bi$ is defined by
+\[
+|z|=\sqrt{a^2+b^2}.
+\]
+It is the distance from $z$ to 0 when we plot $z$ in the complex plane.
+
+Now negative numbers have square roots too, since $(\sqrt a i)^2=-a$. With this, we can solve any quadratic equation by completing the square or using the quadratic formula.
+ But what about general polynomials equations? Do we have to adjoin more elements to $\C$ so that every cubic polynomial $ax^3+bx^2+cx+d=0$ where $a,b,c,d\in \C$, has a solution? Due to the following miracle, we do not:
+\begin{thm}[Fundamental Theorem of Algebra]
+Every nonconstant polynomial with coefficients in $\C$ has a zero in $\C$.
+\end{thm}
+(See lecture 8 for a proof.) This shows that $\C$ is a very ``natural" number system to do algebra over.
+%In fact, {\it every} polynomial equation with coefficients in $\C$ now has a solution---this miracle is called the Fundamental Theorem of Algebra; see the last lecture for a proof.
+
+\subsection{Motivations}
+So what are complex numbers good for? Who cares about polynomial equations that can't be solved over the reals---after all, complex solutions don't make sense in real life, right?
+
+Complex numbers were first developed to solve cubic polynomial equations---the formula hinged on the use of complex numbers even when the solutions of the equation were real. At first mathematicians were hesitant to adopt complex numbers, but complex numbers soon proved their use in a variety of other ways. A math problem (for example, a differential equation) might require as an intermediate step to solve a polynomial equation that may not have real solutions. But if we know how to work with complex numbers, we can proceed just as we would in the real case, and the simplified answer may in fact not have complex numbers at all, but would be hard to obtain otherwise.
+
+Calculus over the complex numbers turns be much nicer---so that it is often advantageous to extend the domain of real functions to the complex numbers, and then look at their properties. This is the case with the infamous zeta function, which has applications to number theory. 
+
+Many problems that don't look like they involve complex numbers turn out to be much easier if we use them. For instance, to find Pythagorean triples we want to solve
+\[
+a^2+b^2=c^2
+\]
+over the integers. We may rewrite this as $c^2-b^2=a^2$ and factor as $(c-b)(c+b)=a^2$, and then use number theory. Suppose we want to do the same with
+\[
+a^3+b^3=c^3.
+\]
+(Think Fermat's Last Theorem!) We rewrite this as $c^3-b^3=a^3$ and factor
+\[
+(c-b)(c^2+cb+b^2)=a^3.
+\]
+However, the left side is not completely factored. If, however, we were working over the complex numbers, we could factor this further:
+\[
+(c-b)(c-\omega b)(c-\omega^2 b)=a^3
+\]
+for some complex number $\omega$. Then we could solve this by using number theory but over complex numbers instead (this is part of what is called algebraic number theory).
+
+\subsection{Examples}
+Let's warm up with some problems.
+\begin{ex}
+Find the sum
+\[1+i+i^2+i^3+\cdots +i^{2011}.\]
+\end{ex}
+\noindent {\it Solution.} We calculate
+\[1=1,\quad i=i, \quad i^2=-1,\quad i^3=-i,\quad i^4=1.\]
+Hence the powers of $i$ cycle through $1,i, -1$, and $-i$. So we group the sum into four terms at a time
+\[
+(1+i+i^2+i^3)+(i^4+i^5+i^6+i^7)+\cdots +(i^{2008}+i^{2009}+i^{2010}+i^{2011})
+\]
+and note that the sum in each group is $1+i-1-i=0$. Hence the answer is 0.
+
+\begin{ex}Show that if $f$ is a polynomial with real coefficients and $f(z)=0$, then $f(\bar{z})=0$. Conclude that the roots of $f$ (with multiplicity) can be grouped into complex conjugate pairs.
+\end{ex}
+\begin{proof}
+Let $f(z)=a_nz^n+\cdots +a_1z+ a_0$. 
+Using the fact that conjugation preserves addition and multiplication,
+\begin{align*}
+f(\bar z)&=a_n\bar z^n+\cdots +a_1\bar z+a_0\\
+&=a_n\overline{z^n}+\cdots +a_1\bar z+a_0\\
+&=\overline{a_nz^n}+\cdots +\overline{a_1z}+\overline{a_0}&\text{since }a_m\text{ real}\\
+&=\overline{a_nz^n+\cdots +a_1z+a_0}\\
+&=\overline{f(z)}.
+\end{align*}
+Thus if $f(z)=0$ then $f(\bar z)=0$. Thus the nonreal roots of $f$ come in complex conjugate pairs.
+\end{proof}
+\begin{ex}
+[AIME1 2009/2] There is a complex number $z$ with imaginary part 164 and a positive integer $n$ such that
+\[\frac{z}{z+n}=4i.\]
+Find $n$.
+\end{ex}
+\noindent\textit{Solution.} We can write $z=a+164i$ where $a$ is real. Then
+\[\frac{a+164i}{(a+n)+164i}=4i.\]
+Clearing the denominator gives
+\[
+a+164i=-656+4(a+n)i.
+\]
+Hence matching the real and imaginary parts, $a=-656$ and $164=4(a+n)=4(-656+n)$. We get $41=-656+n$ or $n=697$.
+\subsection{Problem Set 1}
+\begin{enumerate}
+\item $[1]$ Simplify $\frac{a+bi}{c+di}$, where $a,b,c,d$ are real and $ c+di\neq 0$.
+\item $[1]$ Factor $x^2+y^2$ and $x^3+y^3$ over the complex numbers.
+\item $[1]$ Find $i^{4017}$.
+\item $[1.5]$ (AMC 12B, 2004/16) A function $f$ is defined by $f(z)=i\bar z$. How many values of $z$ satisfy $|z|=5$ and $f(z)=z$?
+%\item $[1.5]$ (AMC 2008B) A function
+\item $[1.5]$ $a$ and $b$ are complex numbers such that
+\[\frac{x}{a+b} = \frac{x}{a} + \frac{x}{b}\]
+is an identity, true for all values of $x$. Find all possible values of $\frac{a}{b}$.
+%\textbf{Solution} Multiply by $ab(a+b)$ and divide by $x$ to get $ab=(a+b)^2$. Now divide by $b^2$ and set $r=\frac{a}{b}$ to get $r^2+r+1=0$. This has solutions $r=\frac{-1\pm\sqrt{3}i}{2}$. [130]
+\item $[1.5]$ (AMC 12A, 2007/18) The polynomial $f(x)=x^4+ax^3+bx^2+cx+d$ has real coefficients, and $f(2i)=f(2+i)=0$. What is $a+b+c+d$?
+\item $[1.5]$ (AMC 12B, 2008/19) A function $f$ is defined by $f(z)=(4+i)z^2+\al z+\ga$ for all complex numbers $z$, where $\al$ and $\ga$ are complex numbers and $i^2=-1$. Suppose that $f(1)$ and $f(i)$ are both real. What is the smallest possible value of $|\al|+|\ga|$?
+\item $[1.5]$ (AIME1 2007/3) The complex number $z$ is equal to $9+bi$, where $b$ is a positive real number. Given that the imaginary parts of $z^2$ and $z^3$ are equal, find $b$.
+\item $[2]$ (AIME1 2002/12) Let $F(z)=\frac{z+i}{z-i}$ for all complex numbers $z\neq i$, and let $z_n=F(z_{n-1})$ for all positive integers $n$. Given that $z_0=\rc{137}+i$ and $z_{2002}=a+bi$, where $a$ and $b$ are real, find $a+b$.
+\item $[2.5]$ Let $\La^*=\{a+bi|a,b\in \Z, (a,b)\neq 0\}$. Evaluate
+\[
+\sum_{\la\in \La^*}\rc{\la^6}.
+\]
+(Note: You may assume the sum is absolutely convergent, i.e. well-defined.)
+\item $[4]$ (USAMO 1989/3) Let $P(z)=z^n+c_1z^{n-1}+\cdots +c_n$ be a polynomial in $z$, with real coefficients $c_k$. Suppose that $|P(i)|<1$. Prove that there exist real numbers $a$ and $b$ such that $P(a+bi)=0$ and $(a^2+b^2+a)^2<4b^2+1$.
+\end{enumerate}
+\section{Polar form}
+\subsection{Basic Facts and Examples}
+%Let's return to the geometric view. 
+Consider the complex plane.
+When we write a complex number as $a+bi$, we graph the point by going horizontally $a$ units and vertically $b$ units. This is called the \textbf{rectangular} form of the complex number. Addition of complex numbers corresponds nicely to addition of vectors. Conjugation corresponds to reflection over the $x$-axis (real axis). But what does multiplication and division?
+
+To answer this question, we need to write our complex numbers in a different form. We could instead specify a location $z$ on the complex plane by the distance $r$ from 0, and the angle $\theta$ made with the positive real axis. Drawing a triangle, we see that
+\[
+z=r(\cos \theta+i\sin\theta)
+\]
+which we abbreviate as $z=r\cis \theta$. This is called the \textbf{polar} form, $z$ is called the \textbf{modulus}, and $\theta$ is called the \textbf{argument}.
+Let's try to multiply complex numbers in this form. Let $z_1=r_1\cis \al$ and $z_2=r_2\cis \be$. Then using the addition identities for sine and cosine,
+\begin{align*}
+z_1z_2&=r_1r_2(\cos \al+i\sin \al)(\cos \be+i\sin \be)\\
+&=r_1r_2[(\cos \al\cos \be-\sin\al\sin\be)+i(\cos\al\sin\be+\cos\be \sin \al)]\\
+&=r_1r_2[\cos(\al+\be)+i\sin(\al+\be)].
+\end{align*}
+We state this as a theorem.
+\begin{thm}[De Moivre]
+\[(r_1\cis \al)(r_2\cis \be)=r_1r_2\cis (\al+\be).\]
+In particular,
+\[
+(r\cis\theta)^n=r^n\cis(n\theta).
+\]
+\end{thm}
+
+Using this theorem we can find $n$th roots of a complex number $z$, i.e. find the solutions to $x^n=z$. Writing $z=r\cis\theta$ and $x=s\cis \phi$, this is equivalent to $(s\cis \phi)^n=r\cis \theta$. Using De Moivre's Theorem, this is equivalent to
+\[
+s^n\cis n\phi=r\cis \theta.
+\]
+Hence we need $s^n=r$ and $n\phi$ equal to $\theta$ as {\it angles}. This means they are allowed to differ by a multiple of $2\pi i$. Hence $r=\sqrt[n]s$ and
+\begin{align*}
+n\phi &=\theta+2\pi ik\\
+\phi&=\frac{\theta}{n}+\frac{2\pi ik}{n}
+\end{align*}
+for some integer $k$. Taking $k=0,1,\ldots, n-1$---the $n$ possibilities for $k$ modulo $n$---give $n$ distinct possible values of $\phi$ (other values differ from one of these by a multiple of $2\pi i$). Thus each nonzero complex number has $n$ $n$th roots.
+
+For example, the third roots of $i=8\cis \frac{\pi}{2}$ are $2\cis \pa{\frac{\pi}{6}+\frac{2\pi k}{3}}$ for $k=0,1,2$, i.e.
+\begin{align*}
+2\cis \frac{\pi}{6}&=\frac{\sqrt{3}}{2}+\rc 2 i\\
+2\cis \frac{5\pi}{6}&=-\frac{\sqrt{3}}{2}+\rc 2 i\\
+2\cis \frac{3\pi}{2}&=-i.
+\end{align*}
+
+\begin{ex}\label{sumroot}
+Let $z\neq 0$ and $n>1$. Show that the sum of the $n$th roots of $z$ equals 0.
+\end{ex}
+\noindent {\it Solution 1.} Let $x$ be a $n$th root of $z$, and $\omega=\cis \frac{2\pi}{n}$. Then $1,\omega,\ldots, \omega^{n-1}$ are the $n$th roots of 1 so $z,z\omega,\ldots, z\omega^{n-1}$ are the $n$th roots of $z$. So the sum is
+\[z(1+\omega+\cdots +\omega^{n-1})=z\cdot \frac{\omega^n-1}{\omega-1}=0\]
+since $\omega^n=1$.
+
+{\it Solution 2.} Let $x_1,\ldots, x_n$ be the $n$th roots of $z$ and $\omega=\cis \frac{2\pi}{n}$ above. Then $x_1\omega,\ldots, x_n\omega$ are also the $n$th roots of unity, so are equal to $x_1,\ldots, x_n$ in some order. Thus the sum $s$ equals both $x_1+\cdots +x_n$ and $\omega(x_1+\cdots+ x_n)$. Since $s=s\omega$, $s=0$.
+
+\begin{ex}[AIME2 2008/9] 
+A particle is located on the coordinate plane at $(5,0)$. Define a {\it move} for the particle as a counterclockwise rotation of $\frac{\pi}{4}$ radians about the origin followed by a translation of 10 units in the positive $x$-direction. Given that the particle's position after 150 moves is $(p,q)$, find the greatest integer less than or equal to $|p|+|q|$.
+\end{ex}
+\noindent {\it Solution.} Think of the coordinate plane as the complex plane, and let $z_n$ be the particle's position after $n$ moves, as a complex number. A counterclockwise rotation of $\frac{\pi}{4}$ corresponds to multiplication by $t=\cis\frac{\pi}{4}%=\frac{\sqrt{2}}{2}+\frac{\sqrt{2}}{2}i
+$, and translation by 10 units in the positive $x$-direction corresponds to adding 10. Thus
+\[z_n=tz_{n-1}+10.\]
+Calculating the first few terms,
+\begin{align*}
+z_0&=5\\
+z_1&=5t+10\\
+z_2&=(5t+10)t+10=5t^2+10t+10
+\end{align*}
+so we see that $z_n=5t^n+10t^{n-1}+\cdots +10$, easily proved by induction. Since $t$ is an eighth root of 1, by Example~(\ref{sumroot}) the sum of the eighth roots $1+t+t^2+\cdots +t^7$ equals 0. Since $t^8=1$, 
+\[0=1+t+\cdots +t^7=t^8+\cdots +t^{15}=\cdots =t^{144}+\cdots+ t^{151}.\]
+Hence
+\begin{align*}
+z_{150}&=5t^{150}+10t^{149}+\cdots +10\\
+&=10[(1+t+\cdots +t^7)+\cdots +(t^{144}+\cdots t^{152})]-10t^{151}-5t^{150}\\
+&=-10t^7-5t^6\\
+&=-10\cis \frac{7\pi}{4}-5\cis \frac{3\pi}2\\
+&=-10\pa{\frac{\sqrt2}{2}-\frac{\sqrt2}{2}i}+5i.
+\end{align*}
+Thus $|p|+|q|=10\sqrt 2+5\approx 10\cdot 1.41+5=19.1$. The answer is 19.
+
+\begin{ex}
+Let $P_n(x)=(x+n)(x+n-1)\cdots (x+1)-(x-1)(x-2)\cdots (x-n)$. Show that all the zeros of $P_n(x)$ are purely imaginary, i.e. have real part 0.
+\end{ex}
+\begin{proof}
+Since a polynomial of degree at most $n-1$ has at most $n-1$ zeros, it suffices to show that there are $n-1$ pure imaginary roots. Let $x=yi$ and $\theta_k(y)=\tan^{-1}\frac{y}{k}$.
+ Making this substitution and rewriting in polar form, $P_n(x)=0$ is equivalent to
+\begin{align}
+\nonumber(iy+n)(iy+n-1)\cdots (iy+1)&=(iy-1)(iy-2)\cdots (iy-n)\\
+\nonumber\iff
+\cis \theta_n(y)\cdots \cis\theta_1(y)&=\cis (\pi-\theta_1(y))\cdots \cis(\pi-\theta_n(y))\\
+\nonumber\iff
+\cis (\theta_1(y)+\cdots \theta_n(y))&=\cis (n\pi-(\theta_1(y)+\cdots +\theta_n(y)))\\
+\label{imagang}\iff 2(\theta_1(y)+\cdots +\theta_n(y))&\equiv n\pi \pmod{2\pi}.
+\end{align}
+Note that each $\theta_k$ is a continuous function of $y$, and that 
+\begin{align*}
+2(\theta_1(y)+\cdots +\theta_n(y))\to -2n\cdot \frac{\pi}{2}&=-n\pi&\text{as }y\to -\infty\\
+2(\theta_1(y)+\cdots +\theta_n(y))\to 2n\cdot \frac{\pi}{2}&=n\pi&\text{as }y\to \infty
+\end{align*}
+Thus $2(\theta_1(y)+\cdots +\theta_n(y))$ attains the value $n\pi-2k\pi$ for $k=1,2,\ldots, n-1$. Hence there are $n-1$ values of $y$ such that~(\ref{imagang}) holds and hence there are $n-1$ purely imaginary roots of $P_n$, as needed.
+\end{proof}
+
+\subsection{Trigonometry}
+The polar form of complex numbers can be used to simplify trig expressions and prove trig identities. 
+\begin{ex}
+Show that $\cos3\theta=4\cos^3\theta-3\cos \theta$ and $\sin 3\theta =3\sin\theta-4\sin^3\theta$.
+\end{ex}
+\noindent {\it Solution.} By De Moivre's Theorem,
+\begin{align*}
+\cos3\theta+i\sin 3\theta&=
+(\cos \theta+i\sin \theta)^3\\
+&=
+\cos^3 \theta +3\cos^2\theta (i\sin \theta) +3\cos \theta(i\sin \theta)^2+(i\sin\theta)^3\\
+&=(\cos^3\theta-3\cos\theta\sin^2(\theta))+(3\cos^2\theta\sin\theta- \sin^3\theta)i
+\end{align*}
+Matching the real and imaginary parts,
+\[\cos3\theta =\cos^3\theta-3\cos\theta\sin^2(\theta)
+=\cos^3\theta-3\cos\theta(1-\cos^2(\theta))
+=4\cos^3\theta-3\cos\theta\]
+and
+\[
+\sin 3\theta =3\cos^2\theta\sin\theta- \sin^3\theta
+=3(1-\sin^2\theta)\sin\theta-\sin^3\theta
+=3\sin \theta-4\sin^3\theta.
+\]
+\begin{ex}
+Show that $\cos 0^{\circ}+\cos 1^{\circ}+\cos 2^{\circ} +\cdots +\cos 89^{\circ}=\frac{1+\cot .5^{\circ}}{2}$.
+\end{ex}
+\noindent {\it Solution.} Let $\omega=\cos1^{\circ}+i\sin 1^{\circ}$. Then $\omega^n=\cos n^{\circ}+i\sin n^{\circ}$. Hence the desired sum equals the real part of $1+\omega+\omega^2+\cdots +\omega^{89}$. Using the geometric series formula,
+\begin{align*}
+1+\omega+\omega^2+\cdots +\omega^{89}=\frac{\omega^{90}-1}{\omega-1}&=\frac{i-1}{(\cos 1^{\circ}-1)+i\sin 1^{\circ}}\\
+&=\frac{(i-1)((\cos 1^{\circ}-1)-i\sin 1^{\circ})}{(\cos 1^{\circ}-1)^2+\sin^2 1^{\circ}}\\
+&=\frac{(i-1)((\cos 1^{\circ}-1)-i\sin 1^{\circ})}{2-2\cos1^{\circ}}\\
+&=\frac{1-\cos1^{\circ}+\sin1^{\circ}+(\cos1^{\circ}-1+\sin1^{\circ})i}{2-2\cos 1^{\circ}}.
+\end{align*}
+This has real part
+\[
+\frac{1-\cos1^{\circ}+\sin1^{\circ}}{2-2\cos 1^{\circ}}=
+\rc2\pa{1+\frac{\sin 1^{\circ}}{1-\cos 1^{\circ}}}=\frac{1+\cot .5^{\circ}}{2}
+\]
+where we used the trig identity $\cot \frac{\theta}{2}=\frac{\sin\theta}{1-\cos\theta}$.
+\subsection{Calculus viewpoint}
+Using calculus we can write $\cos \theta+i\sin \theta$ in a more suggestive form. The Taylor expansions of $\cos$ and $\sin$ are
+\begin{align*}
+\cos x&=1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\cdots\\
+\sin x&=x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\cdots
+\end{align*}
+Thus
+\begin{align*}
+\cos x+i\sin x&=1+ix-\frac{x^2}{2!}-i\frac{x^3}{3!}+\frac{x^4}{4!}+i\frac{x^5}{5!}+\cdots\\
+&=1+(ix)+\frac{(ix)^2}{2!}+\frac{(ix)^3}{3!}+\frac{(ix)^4}{4!}+\frac{(ix)^5}{5!}\cdots\\
+&=e^{ix}.
+\end{align*}
+Therefore we can write $\cis \theta$ as $e^{i\theta}$. Thus De Moivre's Theorem simply corresponds to the fact that $e^{i\theta_1}e^{i\theta_2}=e^{i(\theta_1+\theta_2)}$---the familiar rule for exponents.
+\subsection{Problem set 2}
+\begin{enumerate}
+\item $[1]$ Show that
+\begin{align*}
+\cos\theta&=\frac{e^{i\theta}+e^{-i\theta}}{2}\\
+\sin\theta&=\frac{e^{i\theta}-e^{-i\theta}}{2i}.
+\end{align*}
+\item $[2]$ Prove that
+\begin{align*}
+\cos n\theta&=
+\cos^n\theta-\binom n2\cos^{n-2}\theta \sin^2\theta+\cdots\\
+&=\sum_{k=0}^{\fl{n/2}} (-1)^k\binom{n}{2k}\cos^{n-2k}\theta\sin^{2k}\theta.\\
+\sin n\theta&=
+\binom n1\cos^{n-1}\theta-\binom n3\cos^{n-3}\theta \sin^3\theta+\cdots\\
+&=\sum_{k=0}^{\fl{(n-1)/2}} (-1)^k\binom{n}{2k+1}\cos^{n-2k-1}\theta\sin^{2k+1}\theta.
+\end{align*}
+\item $[2]$ Evaluate
+\[
+\sin \frac{\pi}{n}+\sin\frac{2\pi }{n}+\cdots +\sin\frac{(n-1)\pi}{n}. 
+\]
+\item $[2]$ (AIME2 2000/9) Given that $z$ is a complex number such that $z+\rc{z}=2\cos 3^{\circ}$, find the least integer that is greater than $z^{2000}+\rc{z^{2000}}$.
+\item $[2]$ (AMC 12B, 2005/22) sequence of complex numbers $z_0,z_1,\ldots$ is defined by the rule $z_{n+1}=\frac{iz_n}{\bar z_n}$. Suppose that $|z_0|=1$ and $z_{2005}=1$. How many possible values are there for $z_0$?
+\item $[2]$ (AMC 12A 2008/25) A sequence $(a_1,b_1)$, $(a_2,b_2)$, $(a_3,b_3),\cdots$ of points in the coordinate plane satisfies
+\[(a_{n+1},b_{n+1})=(\sqrt3 a_n-b_n,\sqrt 3 b_n+a_n).\]
+Suppose that $(a_{100},b_{100})=(2,4)$. What is $a_1+b_1$?
+\item $[2]$ (AIME2 2005/9) For how many positive integers $n$ less than or equal to 1000 is
+\[
+(\sin t+i\cos t)^n=\sin nt+i\cos nt
+\]
+true for all real $t$?
+\item $[2.5]$ (AIME 1994/11) The equation $x^{10}+(13x-1)^{10}=0$ has 10 complex roots $r_1,\overline{r_1}, r_2,\overline{r_2},\ldots, r_5,\overline{r_5}$. Find
+\[
+\rc{r_1\overline{r_1}}+\cdots +\rc{r_5\overline{r_5}}.
+\]
+\item $[2.5]$ (AIME2 2001/14) There are $2n$ complex numbers that satisfy both $z^{28}-z^8-1=0$ and $|z|=1$. These numbers have the form $z_m=\cos \theta_m+i\sin\theta_m$ where $0\leq \theta_1< \cdots < \theta_{2n}<360$ and angles are measured in degrees. Find the value of $\theta_2+\theta_4+\cdots +\theta_{2n}$.
+\item $[3]$ Find a closed form for the sum
+\[\binom n0+\binom n3+\binom n6+\cdots \]
+Hint: One way to evaluate $\binom n0+\binom n2+\cdots $ is the following. By the binomial formula, we know
+\begin{align*}
+2^n=(1+1)^n&=\binom n0+\binom n1+\binom n2+\binom n3+\binom n4+\cdots\\
+0=(1-1)^n&=\binom n0-\binom n1+\binom n2-\binom n3+\binom n4+\cdots
+\end{align*}
+Adding these two gives
+\begin{align*}
+2^n&=2\pa{\binom n0+\binom n1+\binom n2+\cdots}\\
+2^{n-1}&=\binom n0+\binom n1+\binom n2+\cdots
+\end{align*}
+How can you generalize this?
+\item $[4]$ (MOSP 2007) Let $a,b_1,\ldots, b_n,c_1,\ldots, c_n$ be real numbers such that \[x^{2n}+ax^{2n-1}+\cdots +ax+1=(x^2+b_1x+c_1)(x^2+b_2x+c_2)\cdots (x^2+b_nx+c_n).\]
+Prove that $c_1=c_2=\cdots =c_n=1$.
+\item $[5]$ (APMO 2009/5) Larry and Rob are two robots traveling in one car from Argovia to Zillis. Both robots have control over the steering and steer according to the following algorith: Larry makes a $90^{\circ}$ left turn after every $l$ kilometers driving from the start; Rob makes a $90^{\circ}$ right turn after every $r$ kilometers driving from the start, where $l$ and $r$ are relatively prime positive integers. In the event of both turns occuring simultaneously, the car will keep going straight without changing direction. Assume that the ground is flat and the car can move in any direction.
+
+Let the car start from Argovia facing towards Zillis. For which choices of the pair $(l,r)$ is the car guaranteed to reach Zillis, regardless of how far it is from Argovia?
+%this is more of a vector problem
+%\item $[2.5]$ Suppose that $\al,\be,\ga$ are angles such that $\sin \al+\sin \be +\sin \ga=0$ and $\cos \al +\cos \be +\cos \ga=0$. Prove that $\al,\be,\ga $ differ by multiples of $60^{\circ}$.
+\end{enumerate}
+\section{Roots of Unity}
+The $n$th roots of unity, i.e. roots of 1, satisfy the equation
+\[x^n-1=0.\]
+The $n$th roots of unity, not counting 1, satisfy
+\[\frac{x^n-1}{x-1}=x^{n-1}+\cdots +x+1=0.\]
+If we plug in $x=\cis \frac{2\pi}{n}$, the terms of this sum are all the $n$th roots of unity, and we get Example~\ref{sumroot}. This simple idea---the sum of the $n$th roots of unity satisfy the equations above, and that their sum is zero---can be very useful.
+
+\begin{ex}
+$n$ points $Q_1,\ldots, Q_n$ are equally spaced on a circle of radius 1 centered at $O$. Point $P$ is on ray $OQ_1$ so that $OP=2$. Find the product
+\[\prod_{k=1}^n PQ_k\]
+in closed form, in terms of $n$.
+\end{ex}
+\noindent \textit{Solution.} Letting ray $OQ_1$ be the positive real axis, $Q_i$ represent the $n$th roots of unity $\omega^i$ in the complex plane. Hence $PQ_i$ equals $|2-\omega^i|$. The roots of $x^n-1=0$ are just the $n$th roots of unity, so $x^n-1=\prod_{i=0}^{n-1} (x-\omega^i)$. Plugging in $x=2$ gives $\prod_{k=1}^n |PQ_i|=2^n-1$.
+
+Plugging in roots of unity can help in factoring polynomials and establishing divisibility, as the following example shows:
+\begin{ex}
+Find all integers $n\geq 1$ such that $x^{n+1}+x^n+1$ is divisible by $x^2+ x+1$.
+\end{ex}
+\noindent \textit{Solution.} 
+In order for $x^{n+1}+x^n+1$ to be divisible by $x^2\pm x+1$, we must have that all zeros of $x^2+x+1$ are zeros of $x^{n+1}+x^n+1$. The zeros are exactly the two third roots of unity not equal to 1. Let $\omega$ be such a root of unity. Then we need $\omega^{n+1}+\omega^n+1=0$. However, we know $\omega^3=1$, so the above equation is equivalent to
+\[\omega^{(n+1)\bmod 3}+\omega^{n\bmod 3}+1=0.\]
+For $n\equiv 0\pmod 3$ this equals $\omega+2$, for $n\equiv 1\pmod 3$ this equals $\omega^2+\omega+1=0$, and for $n\equiv 2\pmod 3$ this equals $\omega+2$. Hence the answer is all $n$ with $n\equiv 2\pmod 3$.
+
+\begin{ex}\label{polyg}[MOSP 2007] Let $n$ be a positive integer which is not a prime power. Prove that there exists an equiangular polygon whose side lengths are $1,\ldots, n$ in some order.
+\end{ex}
+\begin{proof}
+Since $n$ is not a prime power, we can write $n=pq$, where $p$ and $q$ are relatively prime. Let $\omega=\cis\frac{2\pi}{n}$. The existence of such an equiangular polygon is equivalent to the existence of a permutation $a_1,\ldots, a_n$ of the numbers $1,\ldots, n$ such that
+\begin{equation}\label{sumform}
+\sum_{k=0}^{n-1} a_k\omega^k=0
+\end{equation}
+Indeed, given such an equiangular polygon, place it on the complex plane so that the real axis be parallel to one of its sides. Think of the sides of the polygon as vectors forming a loop, and translate them to the origin. Then we get $n$ vectors equally spacced apart; they are in the direction of the $n$th roots of unity and have lengths $1,\ldots, n$ in some order. The sum of the vectors must be 0 because they formed a loop. Hence we get the equation above. Conversely, we can easily reverse the above construction.
+
+We use the two factors of $n$ to cause ``double" cancelation. Note that
+\begin{align}
+\label{cancelpoly}
+&\quad (pr+1)\omega^{rp}+(pr+2)\omega^{rp+q}+\cdots +(pr+p)\omega^{rp+(p-1)q}\\
+\nonumber
+ &=pr\omega^{rp}(1+\omega^q+\cdots +\omega^{(p-1)q})+\omega^{rp}(1+2\omega+\cdots +p\omega^{p-1})\\
+\nonumber &=\omega^{rp}(1+2\omega^q+\cdots +p\omega^{(p-1)q}).
+\end{align}
+We used the fact $1+\omega^q+\cdots +\omega^{(p-1)q}=0$ as the terms are the $p$th roots of unity. Now adding the above expression for $r=1,\ldots, q$ gives
+\[\sum_{r=1}^q\omega^{rp}(1+2\omega^q+\cdots +p\omega^{(p-1)q})
+=(1+\omega^{p}+\cdots +\omega^{(q-1)p})(1+2\omega^q+\cdots +p\omega^{(p-1)q})=0\]
+becuase $1+\omega^p+\cdots +\omega^{(q-1)p}=0$ as the terms are the $q$th roots of unity. However, adding up~(\ref{cancelpoly}) without simplifying for $r=1,\ldots, q$, we get the $pq$ exponents of $\omega$ range over the numbers $rp+kq$, where $1\leq r\leq q$ and $0\leq k\leq q$. Since $p,q$ are relatively prime, these numbers are all distinct modulo $n=pq$. (If $r_1p+k_1q=r_2p+k_2q$ then $(r_1-r_2)p=(k_2-k_1)q$ with $|r_1-r_2|<q,|k_2-k_1|<p$ so they must equal 0.) Thus taking the exponents modulo $pq$, we get a sum of the form~(\ref{sumform}), as needed.
+\end{proof}
+\subsection{Problems}
+\begin{enumerate}
+\item $[1]$ Factor $x^5+x+1$.
+\item $[2]$ (AIME 1996/11) Let $P$ be the product of the roots of $z^6+z^4+z^3+z^2+1=0$ that have positive imaginary part, and suppose that $P=r(\cos \theta^{\circ}+i\sin\theta^{\circ})$ where $0<r$ and $0\leq \theta <360$. Find $\theta$.
+\item $[2.5]$ (AIME 1997/14) Let $v$ and $w$ be distinct, randomly chosen roots of the equation $z^{1997}-1=0$. Let $\frac mn$ be the probability that $\sqrt{2+\sqrt 3}\leq |v+w|$, where $m$ and $n$ are relatively prime positive integers. Find $m+n$.
+\item $[2.5]$ (AIME1 2004/13)
+The polynomial 
+\[P(x)=(1+x+x^2+\cdots +x^{17})^2-x^{17}
+\]
+has 34 complex zeros of the form $z_k=r_k[\cos(2\pi \al_k)+i\sin(2\pi \al_k)]$, $k=1,2,3,\ldots, 34$, with $0<\al_1\leq \al_2\leq \cdots \leq \al_{34}<1$ and $r_k>0$. Given that $\al_1+\al_2+\al_3+\al_4+\al_5=m/n$ where $m$ and $n$ are relatively prime positive integers, find $m+n$.
+\item $[2.5]$ (AIME2 2003/15)
+Let 
+\[P(x)=24x^{24} +\sum_{j=1}^{23} (24-j) (x^{24-j}+x^{24+j}).\]
+Let $z_1,\ldots, z_r$ be the distinct zeros of $P(x)$ and let $z_k^2=a_k+b_ki$ for $k=1,2,\ldots, r$, where $a_k$ and $b_k$ are real numbers. Let
+\[
+\sum_{k=1}^n|b_k|=m+n\sqrt{p}
+\]
+where $m,n,$ and $p$ are integers and $p$ is not divisible by the square of any prime. Find $m+n+p$.
+\item $[2.5]$ (AIME2 2009/13) Let $A$ and $B$ be the endpoints of a semicircular arc of radius $2$. The arc is divided into seven congruent arcs by six equally spaced points $C_1$, $C_2$, $\dots$, $C_6$. All chords of the form $\overline {AC_i}$ or $\overline {BC_i}$ are drawn. Let $n$ be the product of the lengths of these twelve chords. Find the remainder when $n$ is divided by $1000$.
+\item $[3]$  Find all ordered pairs $(m,n)$ such that $x^{n+1}+x^n+1$ divides $x^{m+1}+x^m+1$.
+\item $[5]$ (IMO 1990/6) Prove that there exists a convex 1990-gon such that all its angles are equal and the lengths of the sides are the numbers $1^2,2^2,\ldots, 1990^2$ in some order. Can you generalize the statements of this problem and Example~\ref{polyg}?
+\item $[5]$ (USAMO 1999/3) Let $p>2$ be prime and let $a,b,c,d$ be integers not divisible by $p$, such that
+\[
+\{ra/p\}+\{rb/p\}+\{rc/p\}+\{rd/p\}=2
+\]
+for any integer $r$ not divisible by $p$. Prove that at least two of the numbers $a+b$, $a+c$, $a+d$, $b+c$, $b+d$, $c+d$ are divisible by $p$. (Note: $\{x\}=x-\fl{x}$ denotes the fractional part of $x$.)
+\end{enumerate}
+\section{Complex numbers in combinatorics}
+We give two applications of complex numbers to combinatorics problems. For other beautiful problems of a similar nature, the reader is referred to~\cite[\S 8]{PftB}.
+\begin{ex}
+Show that an $a\times b$ rectangle can be tiled by $1\times n$ blocks if and only if either $n|a$ or $n|b$.
+\end{ex}
+\noindent {\it Solution.} If $n|a$ or $n|b$ then the rectangle can obviously be tiled. Now suppose that an $a\times b$ rectangle can be tiled by $1\times n$ blocks.
+
+Label the squares of the rectangle $(x,y)$ with $0\leq x\leq a-1$, $0\leq y\leq b-1$. Let $\omega$ be a primitive $n$th root of unity. Label $(x,y)$ with $\omega^{x+y}$. Each $1\times n$ tile covers numbers of the form
+\[
+\omega^t,\omega^{t+1},\ldots, \omega^{t+n-1}
+\]
+for some $t$; these numbers  sum to 0. However the sum of all numbers in the board is 
+\[(1+\omega+\cdots +\omega^{a-1})(1+\omega+\cdots+\omega^{b-1})=\frac{\omega^a-1}{\omega-1}\cdot \frac{\omega^b-1}{\omega-1}.\]
+This is 0 only if $\omega^a=1$ or $\omega^b=1$, i.e. $n|a$ or $n|b$.
+
+\begin{ex}[TST 2004/2]
+Assume $n$ is a positive integer. Consider sequences $a_0,a_1,\ldots, a_n$ for which $a_i\in \{1,2,\ldots, n\}$ for all $i$ and $a_n=a_0$.
+\begin{enumerate}
+\item[(a)]
+Call a sequence {\it good} if for all $i=1,2,\ldots, n$, $a_i-a_{i-1}\not\equiv i\pmod n$. Suppose that $n$ is odd. Find the number of good sequences.
+\item[(b)]
+Call a sequence {\it great} if for all $i=1,2,\ldots, n$, $a_i-a_{i-1}\not\equiv i,2i\pmod n$. Suppose that $n$ is an odd prime. Find the number of great sequences.
+\end{enumerate}
+\end{ex}
+\noindent{\it Solution.}
+Let $f$ be a function from $\{1,2,\ldots, n\}$ to the set of subsets of $\{0,1,\ldots, n\}$. Define a non-$f$ sequence to be a sequence $a_0,a_1,\ldots, a_n$ such that 
+\begin{enumerate}
+\item $a_i\in \{1,2,\ldots, n\}$ for $i=0,\ldots, n$,
+\item $a_n=a_0$, and
+\item $a_i-a_{i-1}$ is not congruent to a number in $f(i)$ modulo $n$.
+\end{enumerate}
+\begin{clm}
+The number of non-$f$ sequences is $n$ times the number of sequences $d_1,d_2,\ldots, d_{n}$ such that
+\begin{enumerate}
+\item  $d_i\in \{0,1,2,\ldots, n-1\}$ for each $i$,
+\item $d_1+\cdots d_n\equiv 0\pmod n$, and
+\item $d_i\nin f(i)$.
+\end{enumerate}
+\end{clm}
+\begin{proof}
+Given a non-$f$ sequence $a_i$, associate with it a sequence as above, with $d_i=(a_{i}-a_{i-1})\bmod n$. Each sequence $d_i$ satisfying the above is associated with $n$ non-$f$ sequences: $a_0$ can be chosen arbitrarily (there are $n$ choices), and once $a_{i-1}$ has been defined, $a_{i}$ must be the unique integer in $\{0,1,\ldots, n-1\}$ so that $a_{i}\equiv a_{i-1}+d_i\pmod n$.
+\end{proof}
+\begin{clm}
+Let $P(x)=1+x+\cdots +x^{n-1}$, and define $b_k$ such that
+\[
+\prod_{i=1}^n\ba{P(x)-\sum_{j\in f(i)}x^j}=\sum_{k\geq 0} b_k x^k.
+\]
+Then the number of valid sequences $\{d_i\}_{i=1}^{n}$ is $\sum_{j\geq 0} b_{jn}$. 
+\end{clm}
+\begin{proof}
+Note that $P(x)-\sum_{j\in f(i)} x^j$ contains only powers of $x$ whose exponents  are allowable values for $d_i$. Take a term in the expansion of the left-hand-side, suppose it takes the term $x^{d_i}$ from $P(x)-\sum_{j\in f(i)} x^j$. Then the term is $x^{d_1+d_2+\cdots +d_n}$. Now $\{d_i\}_{i=1}^n$ is a valid sequence iff $d_1+d_2+\cdots +d_n\equiv 0\pmod n$. Hence summing the coefficients of $x^k$ for $n|k$ gives the number of valid sequences.
+\end{proof}
+Combining this with the previous claim, the number of non-$f$ sequences in $n\sum_{j\geq 0}b_{jn}$.
+\begin{enumerate}
+\item[(a)] A good sequence is exactly a non-$f$ sequence for $f(i)=\{i\bmod n\}$. Let
+\[Q(x)=\prod_{i=1}^n\ba{P(x)-\sum_{j\in f(i)}x^j} =\prod_{i=0}^{n-1}\ba{P(x)-x^i}.\]
+Now 
+\[Q(1)=\prod_{i=0}^{n-1}(P(1)-1)=\prod_{i=0}^{n-1} (n-1) =(n-1)^n\] and for any $\omega\neq 1$ a $n$th root of unity,
+\begin{align*}
+Q(\omega)&=\prod_{i=0}^{n-1} (P(\omega)-\omega^i)\\ &=\prod_{i=0}^{n-1}(-\omega^i)\\
+&=-\omega^{\frac{n(n-1)}{2}}=-1
+\end{align*}
+since the fact that $n$ is odd gives $n|\frac{n(n-1)}{2}$. Now $Q(x)+1$ is zero for all $n$th roots of unity $\omega\neq 1$, so is divisible by $P(x)$. Writing 
+$Q(x)+1=\sum_{k\geq 0} c_kx^k$, the fact that $P(x)|Q(x)$ gives that the sums $S_r=\sum_{k\equiv r\pmod n}c_k$ are all equal (fill in the details---basically any term times $P(x)$ is spread among terms whose exponents make up a complete residue class modulo $n$). Hence, since the sum of coefficients of $Q(x)+1$ is $Q(1)+1$, 
+\[\sum_{k\geq 0} c_{kn}=\frac{Q(1)+1}{n}=\frac{(n-1)^n+1}{n}.\]
+Then the desired sum for $Q(x)$ is $\frac{(n-1)^n+1}{n}-1$ and multiplying by $n$ we get there are $(n-1)^n-n+1$ good sequences.
+\item[(b)] A great sequence is a non-$f$ sequence for $f(i)=\{i\bmod n,2i\bmod n\}$. The calculations are left to the reader.
+\end{enumerate}
+The following lemma will be useful below.
+\begin{lem}
+If $\omega\neq 1$ is $p$th root of unity, and $a_0,\ldots, a_{p-1}$ are rational numbers such that 
+\[
+a_0+a_1\omega+\cdots +a_{p-1}\omega^{p-1}=0
+\]
+then $a_0=\cdots= a_{p-1}$.
+\end{lem}
+This lemma follows from the fact that $1+x+\ldots +x^{p-1}$ is the irreducible (minimal) polynomial of $\omega$, which we will prove in a later lecture.
+\subsection{Problem set 4}
+\begin{enumerate}
+\item $[3]$ Consider a rectangle which can be tiled with a finite combination of $1\times m$ or $n\times 1$ rectangles, where $m$ and $n$ are natural numbers. (The tiles cannot be rotated.) Prove that it is possible to tile this rectangle with only $1\times m$ or only with $n\times 1$ rectangles.
+\item $[4]$ TST 2004/2b above.
+\item $[4$, with the above preparation] (IMO 1995/6) Let $p>2$ be a prime number and $A=\{1,2,\ldots, 2p\}$. Find the number of subsets of $A$, having $p$ elements and with sum of elements divisible by $p$.
+
+\end{enumerate}
+\begin{thebibliography}{9}
+\bibitem{PftB} Andreescu, T.; Dospinescu, G.: {\it Problems from The Book}. XYZ Press, Allen TX, 2008.
+\end{thebibliography}
+\end{document}
